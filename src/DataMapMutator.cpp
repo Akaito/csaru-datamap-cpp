@@ -288,7 +288,7 @@ DataMapMutator & DataMapMutator::CreateChildSafe (char const * name, size_t name
     #endif
 
     DataNode * child = m_node->AppendNewChild();
-    child->SetNameSecure(name, nameLen);
+    child->SetNameSecure(name, int(nameLen));
     return *this;
 }
 
@@ -314,7 +314,7 @@ DataMapMutator & DataMapMutator::CreateAndGotoChildSafe (char const * name, size
     #endif
 
     DataNode * child = m_node->AppendNewChild();
-    child->SetNameSecure(name, nameLen);
+    child->SetNameSecure(name, int(nameLen));
     PushNode(child);
     return *this;
 }

@@ -4,3 +4,4 @@
 #include <DataMap.hpp>
 #include <DataMapReader.hpp>
 #include <DataMapMutator.hpp>
+#include <DataMapReaderSimple.hpp>

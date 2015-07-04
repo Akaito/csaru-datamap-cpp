@@ -24,6 +24,9 @@
     <ClCompile Include="src\DataNode.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\DataMapReaderSimple.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(ProjectDir)src\StdAfx.h">
@@ -42,6 +45,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\DataNode.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DataMapReaderSimple.hpp">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

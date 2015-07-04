@@ -44,7 +44,7 @@ public:
 
     // RETURNS: 0 if invalidated, 1 if at the root node, 2 if at one of the root
     //  node's children, and so on.
-    inline int GetCurrentDepth () const                { return m_nodeStack.size() + (m_node == NULL ? 0 : 1); }
+    inline int GetCurrentDepth () const                { return int(m_nodeStack.size() + (m_node == NULL ? 0 : 1)); }
 
     inline bool IsValid () const                       { return m_node != NULL; }
 

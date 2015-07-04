@@ -249,7 +249,7 @@ DataNode * DataNode::SetBool (bool new_bool) {
 
 //=========================================================================
 const DataNode * DataNode::GetChildByName (const char * name) const {
-    int childCount = m_children.size();
+    int childCount = int(m_children.size());
     for (int i = 0;  i < childCount;  ++i) {
         // if we find a match, return it
         if (!strcmp(m_children[i].GetName(), name))
@@ -260,7 +260,7 @@ const DataNode * DataNode::GetChildByName (const char * name) const {
 
 //=========================================================================
 DataNode * DataNode::GetChildByName (const char * name) {
-    int childCount = m_children.size();
+    int childCount = int(m_children.size());
     for (int i = 0;  i < childCount;  ++i) {
         // if we find a match, return it
         if (!strcmp(m_children[i].GetName(), name))
