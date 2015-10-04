@@ -1,7 +1,20 @@
+# Vim
 *~
 *.swp
-__pycache__
+*.vim
 
+# Visual Studio
 Debug
 Release
-*vcxproj*.user
+*vcxproj*
+*.sln
+*.sdf
+
+# CMake
+CMakeFiles
+CMakeCache.txt
+*.cmake
+install_manifest.txt
+
+# Python
+__pycache__
