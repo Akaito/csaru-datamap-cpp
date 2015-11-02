@@ -28,5 +28,5 @@ include($ENV{CSaruDir}/cmake/CSaru.cmake)
 # Pass the version of your project; it's not related to the CSaruEnviron.
 CSaru_Lib(0.2)
 
-CSaru_Depends("github.com/akaito/codesaru-environ_src_csaru-core-cpp")
+CSaru_Depends("csaru-core-cpp")
 
