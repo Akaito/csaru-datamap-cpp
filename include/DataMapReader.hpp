@@ -22,7 +22,7 @@ freely, subject to the following restrictions:
 
 #include <vector>
 
-#include <csaru-core-cpp.h>
+#include <csaru-core-cpp/csaru-core-cpp.h>
 
 // TODO: Speed up Reader by maintaining the current child's index?
 
@@ -176,3 +176,4 @@ public:
 };
 
 } // namespace CSaruContainer
+

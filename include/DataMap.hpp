@@ -20,9 +20,9 @@ freely, subject to the following restrictions:
 
 #pragma once
 
-#include "../include/DataNode.hpp"
-#include "../include/DataMapMutator.hpp"
-#include "../include/DataMapReader.hpp"
+#include "DataNode.hpp"
+#include "DataMapMutator.hpp"
+#include "DataMapReader.hpp"
 
 namespace CSaruContainer {
 

@@ -20,8 +20,7 @@ freely, subject to the following restrictions:
 
 #pragma once
 
-#include "../include/DataMapReader.hpp"
-#include <csaru-core-cpp.h>
+#include "DataMapReader.hpp"
 
 namespace CSaruContainer {
 
@@ -69,3 +68,4 @@ public: // Queries / Commands
 };
 
 } // namespace CSaruContainer
+
