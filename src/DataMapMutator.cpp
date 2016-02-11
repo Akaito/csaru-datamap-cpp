@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Christopher Higgins Barrett
+Copyright (c) 2016 Christopher Higgins Barrett
 
 This software is provided 'as-is', without any express or implied
 warranty. In no event will the authors be held liable for any damages
@@ -18,7 +18,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include <assert.h>
+#include <cassert>
 
 #include "../include/DataMapMutator.hpp"
 #include "../include/DataNode.hpp"
@@ -62,7 +62,7 @@ DataMapMutator & DataMapMutator::PopNode (void) {
         #if DATAMAPMUTATOR_BREAK_ON_INVALIDATING_ACTIONS
             assert(false && "DataMapMutator::PopNode() called, but this Mutator was already at the root node.");
         #endif
-        m_node = NULL;
+        m_node = nullptr;
     // otherwise, go up one node in the stack
     } else {
         m_node = m_nodeStack.back();
@@ -74,19 +74,19 @@ DataMapMutator & DataMapMutator::PopNode (void) {
 //=========================================================================
 DataNode * DataMapMutator::GetParentNode (void) {
     if (m_nodeStack.empty())
-        return NULL;
+        return nullptr;
     return m_nodeStack.back();
 }
 
 //=========================================================================
 DataMapMutator & DataMapMutator::ToFirstChild (void) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::ToFirstChild() called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::ToFirstChild() called, but m_node == nullptr.");
     #endif
 
     DataNode * child = m_node->GetChildSafe(0);
     // this is a mutator.  If there are no children, create one
-    if (child == NULL)
+    if (child == nullptr)
         child = m_node->AppendNewChild();
 
     PushNode(child);
@@ -96,7 +96,7 @@ DataMapMutator & DataMapMutator::ToFirstChild (void) {
 //=========================================================================
 DataMapMutator & DataMapMutator::ToLastChild (void) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::ToLastChild() called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::ToLastChild() called, but m_node == nullptr.");
     #endif
 
     // this is a mutator.  If there are no children, create one
@@ -111,7 +111,7 @@ DataMapMutator & DataMapMutator::ToLastChild (void) {
 //=========================================================================
 DataMapMutator & DataMapMutator::ToChild (int index) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::ToChild(int index) called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::ToChild(int index) called, but m_node == nullptr.");
         assert(index >= 0 && "DataMapMutator::ToChild(int index) called with a negative index.");
     #endif
 
@@ -126,13 +126,13 @@ DataMapMutator & DataMapMutator::ToChild (int index) {
 //=========================================================================
 DataMapMutator & DataMapMutator::ToChild (const char * name) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::ToChild(const char * name) called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::ToChild(const char * name) called, but m_node == nullptr.");
     #endif
 
     DataNode * desiredChild = m_node->GetChildByName(name);
 
     // this is a mutator.  If there is no such child, create one
-    if (desiredChild == NULL)
+    if (desiredChild == nullptr)
         PushNode(m_node->AppendNewChild()->SetName(name));
     else
         PushNode(desiredChild); 
@@ -142,7 +142,7 @@ DataMapMutator & DataMapMutator::ToChild (const char * name) {
 //=========================================================================
 DataMapMutator & DataMapMutator::ToNextSibling (void) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::ToNextSibling() called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::ToNextSibling() called, but m_node == nullptr.");
     #endif
     #if DATAMAPMUTATOR_BREAK_ON_INVALIDATING_ACTIONS
         assert(
@@ -163,7 +163,7 @@ DataMapMutator & DataMapMutator::ToNextSibling (void) {
     DataNode * sibling = parent->GetChildSafe(prevIndex + 1);
 
     // this is a mutator.  If there is no next sibling, create one
-    if (sibling == NULL)
+    if (sibling == nullptr)
         m_node = parent->AppendNewChild();
     else
         m_node = sibling;
@@ -174,7 +174,7 @@ DataMapMutator & DataMapMutator::ToNextSibling (void) {
 //=========================================================================
 DataMapMutator & DataMapMutator::ToPreviousSibling (void) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::ToPreviousSibling() called, but m_node == " "NULL.");
+        assert(m_node && "DataMapMutator::ToPreviousSibling() called, but m_node == nullptr.");
     #endif
     #if DATAMAPMUTATOR_BREAK_ON_INVALIDATING_ACTIONS
         assert(
@@ -195,7 +195,7 @@ DataMapMutator & DataMapMutator::ToPreviousSibling (void) {
     DataNode * sibling = parent->GetChildSafe(prevIndex);
 
     // this is a mutator.  If there is no next sibling, create one
-    if (sibling == NULL)
+    if (sibling == nullptr)
         m_node = parent->InsertNewChild(0);
     else
         m_node = sibling;
@@ -214,7 +214,7 @@ bool DataMapMutator::IsFirstChild (void) {
 //=========================================================================
 DataMapMutator & DataMapMutator::SetToObjectType (void) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::SetToObjectType() called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::SetToObjectType() called, but m_node == nullptr.");
     #endif
 
     m_node->SetType(DataNode::Type::Object);
@@ -224,7 +224,7 @@ DataMapMutator & DataMapMutator::SetToObjectType (void) {
 //=========================================================================
 DataMapMutator & DataMapMutator::SetToArrayType (void) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::SetToArrayType() called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::SetToArrayType() called, but m_node == nullptr.");
     #endif
 
     m_node->SetType(DataNode::Type::Array);
@@ -234,7 +234,7 @@ DataMapMutator & DataMapMutator::SetToArrayType (void) {
 //=========================================================================
 DataMapMutator & DataMapMutator::SetToBooleanType (void) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::SetToBooleanType() called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::SetToBooleanType() called, but m_node == nullptr.");
         assert(
             !m_nodeStack.empty() &&
                 "DataMapMutator::SetToBooleanType() called, but m_node is the root of a DataMap.  "
@@ -253,7 +253,7 @@ DataMapMutator & DataMapMutator::SetToBooleanType (void) {
 //=========================================================================
 DataMapMutator & DataMapMutator::SetToNullType (void) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::SetToNullType() called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::SetToNullType() called, but m_node == nullptr.");
         assert(
             !m_nodeStack.empty() &&
                 "DataMapMutator::SetToNullType() called, but m_node is the root of a DataMap.  "
@@ -268,7 +268,7 @@ DataMapMutator & DataMapMutator::SetToNullType (void) {
 //=========================================================================
 DataMapMutator & DataMapMutator::CreateChild (char const * name) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::CreateChild() called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::CreateChild() called, but m_node == nullptr.");
     #endif
 
     DataNode * child = m_node->AppendNewChild();
@@ -279,10 +279,10 @@ DataMapMutator & DataMapMutator::CreateChild (char const * name) {
 }
 
 //=========================================================================
-DataMapMutator & DataMapMutator::CreateChildSafe (char const * name, size_t nameLen) {
+DataMapMutator & DataMapMutator::CreateChildSafe (char const * name, std::size_t nameLen) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::CreateChildSafe() called, but m_node == NULL.");
-        assert(name && "DataMapMutator::CreateChildSafe() called, but name == NULL.");
+        assert(m_node && "DataMapMutator::CreateChildSafe() called, but m_node == nullptr.");
+        assert(name && "DataMapMutator::CreateChildSafe() called, but name == nullptr.");
     #endif
 
     DataNode * child = m_node->AppendNewChild();
@@ -293,7 +293,7 @@ DataMapMutator & DataMapMutator::CreateChildSafe (char const * name, size_t name
 //=========================================================================
 DataMapMutator & DataMapMutator::CreateAndGotoChild (char const * name) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::CreateAndGotoChild() called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::CreateAndGotoChild() called, but m_node == nullptr.");
     #endif
 
     DataNode * child = m_node->AppendNewChild();
@@ -305,10 +305,10 @@ DataMapMutator & DataMapMutator::CreateAndGotoChild (char const * name) {
 }
 
 //=========================================================================
-DataMapMutator & DataMapMutator::CreateAndGotoChildSafe (char const * name, size_t nameLen) {
+DataMapMutator & DataMapMutator::CreateAndGotoChildSafe (char const * name, std::size_t nameLen) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::CreateAndGotoChildSafe() called, but m_node == NULL.");
-        assert(name && "DataMapMutator::CreateAndGotoChildSafe() called, but name == NULL.");
+        assert(m_node && "DataMapMutator::CreateAndGotoChildSafe() called, but m_node == nullptr.");
+        assert(name && "DataMapMutator::CreateAndGotoChildSafe() called, but name == nullptr.");
     #endif
 
     DataNode * child = m_node->AppendNewChild();
@@ -320,8 +320,8 @@ DataMapMutator & DataMapMutator::CreateAndGotoChildSafe (char const * name, size
 //=========================================================================
 void DataMapMutator::WriteName (char const * name) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::WriteName() called, but m_node == NULL.");
-        assert(name && "DataMapMutator::WriteName() called, but name == NULL.");
+        assert(m_node && "DataMapMutator::WriteName() called, but m_node == nullptr.");
+        assert(name && "DataMapMutator::WriteName() called, but name == nullptr.");
     #endif
 
     m_node->SetName(name);
@@ -330,7 +330,7 @@ void DataMapMutator::WriteName (char const * name) {
 //=========================================================================
 void DataMapMutator::WriteNameSecure (char const * name, int sizeInElements) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::WriteNameSecure() called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::WriteNameSecure() called, but m_node == nullptr.");
     #endif
 
     m_node->SetNameSecure(name, sizeInElements);
@@ -339,7 +339,7 @@ void DataMapMutator::WriteNameSecure (char const * name, int sizeInElements) {
 //=========================================================================
 void DataMapMutator::Write (bool boolValue) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::Write(bool) called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::Write(bool) called, but m_node == nullptr.");
         assert(
             !m_nodeStack.empty() &&
                 "DataMapMutator::Write(bool) called, but m_node is currently the root.  "
@@ -353,7 +353,7 @@ void DataMapMutator::Write (bool boolValue) {
 //=========================================================================
 void DataMapMutator::Write (char const * name, bool boolValue) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::Write(bool) called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::Write(bool) called, but m_node == nullptr.");
         assert(
             !m_nodeStack.empty() &&
                 "DataMapMutator::Write(char const *, bool) called, but m_node is currently the root.  "
@@ -368,7 +368,7 @@ void DataMapMutator::Write (char const * name, bool boolValue) {
 //=========================================================================
 void DataMapMutator::Write (int intValue) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::Write(int) called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::Write(int) called, but m_node == nullptr.");
         assert(
             !m_nodeStack.empty() &&
                 "DataMapMutator::Write(int) called, but m_node is currently the root.  "
@@ -382,7 +382,7 @@ void DataMapMutator::Write (int intValue) {
 //=========================================================================
 void DataMapMutator::Write (char const * name, int intValue) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::Write(name, int) called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::Write(name, int) called, but m_node == nullptr.");
         assert(
             !m_nodeStack.empty() &&
                 "DataMapMutator::Write(char const *, int) called, but m_node is currently the root.  "
@@ -397,7 +397,7 @@ void DataMapMutator::Write (char const * name, int intValue) {
 //=========================================================================
 void DataMapMutator::Write (float floatValue) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::Write(float) called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::Write(float) called, but m_node == nullptr.");
         assert(
             !m_nodeStack.empty() &&
                 "DataMapMutator::Write(float) called, but m_node is currently the root.  "
@@ -411,7 +411,7 @@ void DataMapMutator::Write (float floatValue) {
 //=========================================================================
 void DataMapMutator::Write (char const * name, float floatValue) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::Write(name, float) called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::Write(name, float) called, but m_node == nullptr.");
         assert(
             !m_nodeStack.empty() &&
                 "DataMapMutator::Write(char const *, float) called, but m_node is currently the root.  "
@@ -426,7 +426,7 @@ void DataMapMutator::Write (char const * name, float floatValue) {
 //=========================================================================
 void DataMapMutator::Write (char const * stringValue) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::Write(char const *) called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::Write(char const *) called, but m_node == nullptr.");
         assert(
             !m_nodeStack.empty() &&
                 "DataMapMutator::Write(char const *) called, but m_node is currently the root.  "
@@ -440,7 +440,7 @@ void DataMapMutator::Write (char const * stringValue) {
 //=========================================================================
 void DataMapMutator::Write (char const * name, char const * stringValue) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::Write(char const *, char const *) called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::Write(char const *, char const *) called, but m_node == nullptr.");
         assert(
             !m_nodeStack.empty() &&
                 "DataMapMutator::Write(char const *, char const *) called, but m_node is currently the root.  "
@@ -455,7 +455,7 @@ void DataMapMutator::Write (char const * name, char const * stringValue) {
 //=========================================================================
 void DataMapMutator::WriteSafe (char const * name, int nameSizeInElements, bool boolValue) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::WriteSafe(char const *, int, int) called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::WriteSafe(char const *, int, int) called, but m_node == nullptr.");
         assert(
             !m_nodeStack.empty() &&
                 "DataMapMutator::WriteSafe(char const *, int, bool) called, but m_node is currently the root.  "
@@ -470,7 +470,7 @@ void DataMapMutator::WriteSafe (char const * name, int nameSizeInElements, bool 
 //=========================================================================
 void DataMapMutator::WriteSafe (char const * name, int nameSizeInElements, int intValue) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::WriteSafe(char const *, int, int) called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::WriteSafe(char const *, int, int) called, but m_node == nullptr.");
         assert(
             !m_nodeStack.empty() &&
                 "DataMapMutator::WriteSafe(char const *, int, int) called, but m_node is currently the root.  "
@@ -485,7 +485,7 @@ void DataMapMutator::WriteSafe (char const * name, int nameSizeInElements, int i
 //=========================================================================
 void DataMapMutator::WriteSafe (char const * name, int nameSizeInElements, float floatValue) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::WriteSafe(char const *, int, float) called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::WriteSafe(char const *, int, float) called, but m_node == nullptr.");
         assert(
             !m_nodeStack.empty() &&
                 "DataMapMutator::WriteSafe(char const *, int, float) called, but m_node is currently the root.  "
@@ -500,7 +500,7 @@ void DataMapMutator::WriteSafe (char const * name, int nameSizeInElements, float
 //=========================================================================
 void DataMapMutator::WriteSafe (char const * stringValue, int valueSizeInElements) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::WriteSafe(char const *, int) called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::WriteSafe(char const *, int) called, but m_node == nullptr.");
         assert(
             !m_nodeStack.empty() &&
                 "DataMapMutator::WriteSafe(char const *, int) called, but m_node is currently the root.  "
@@ -519,7 +519,7 @@ void DataMapMutator::WriteSafe (
     int          valueSizeInElements
 ) {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::WriteSafe(char const *, int, char const *, int) called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::WriteSafe(char const *, int, char const *, int) called, but m_node == nullptr.");
         assert(
             !m_nodeStack.empty() &&
                 "DataMapMutator::WriteSafe(char const *, int, char const *, int) called, but m_node is currently the "
@@ -562,7 +562,7 @@ void DataMapMutator::DeleteLastChildren (int count) {
 //=========================================================================
 const char * DataMapMutator::ReadName (void) const {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::ReadName() called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::ReadName() called, but m_node == nullptr.");
     #endif
 
     return m_node->GetName();
@@ -571,7 +571,7 @@ const char * DataMapMutator::ReadName (void) const {
 //=========================================================================
 bool DataMapMutator::ReadBool (void) const {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::ReadBool() called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::ReadBool() called, but m_node == nullptr.");
     #endif
     #if DATAMAPMUTATOR_EXTRA_SAFETY_CHECKS
         assert(
@@ -586,7 +586,7 @@ bool DataMapMutator::ReadBool (void) const {
 //=========================================================================
 int DataMapMutator::ReadInt (void) const {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::ReadInt() called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::ReadInt() called, but m_node == nullptr.");
     #endif
     #if DATAMAPMUTATOR_EXTRA_SAFETY_CHECKS
         assert(
@@ -601,7 +601,7 @@ int DataMapMutator::ReadInt (void) const {
 //=========================================================================
 float DataMapMutator::ReadFloat (void) const {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::ReadFloat() called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::ReadFloat() called, but m_node == nullptr.");
     #endif
     #if DATAMAPMUTATOR_EXTRA_SAFETY_CHECKS
         assert(
@@ -616,7 +616,7 @@ float DataMapMutator::ReadFloat (void) const {
 //=========================================================================
 const char * DataMapMutator::ReadString (void) const {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(m_node && "DataMapMutator::ReadString() called, but m_node == NULL.");
+        assert(m_node && "DataMapMutator::ReadString() called, but m_node == nullptr.");
     #endif
     #if DATAMAPMUTATOR_EXTRA_SAFETY_CHECKS
         assert(
@@ -631,8 +631,8 @@ const char * DataMapMutator::ReadString (void) const {
 //=========================================================================
 bool DataMapMutator::ReadBoolSafe (bool * outBool) const {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(outBool && "DataMapMutator::ReadBoolSafe() called, but outBool == NULL.");
-        assert(m_node && "DataMapMutator::ReadBoolSafe() called, but m_node == NULL.");
+        assert(outBool && "DataMapMutator::ReadBoolSafe() called, but outBool == nullptr.");
+        assert(m_node && "DataMapMutator::ReadBoolSafe() called, but m_node == nullptr.");
     #endif
 
     return m_node->QueryBool(outBool);
@@ -641,8 +641,8 @@ bool DataMapMutator::ReadBoolSafe (bool * outBool) const {
 //=========================================================================
 bool DataMapMutator::ReadIntSafe (int * outInt) const {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(outInt && "DataMapMutator::ReadIntSafe() called, but outInt == NULL.");
-        assert(m_node && "DataMapMutator::ReadIntSafe() called, but m_node == NULL.");
+        assert(outInt && "DataMapMutator::ReadIntSafe() called, but outInt == nullptr.");
+        assert(m_node && "DataMapMutator::ReadIntSafe() called, but m_node == nullptr.");
     #endif
 
     return m_node->QueryInt(outInt);
@@ -651,8 +651,8 @@ bool DataMapMutator::ReadIntSafe (int * outInt) const {
 //=========================================================================
 bool DataMapMutator::ReadFloatSafe (float * outFloat) const {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(outFloat && "DataMapMutator::ReadFloatSafe() called, but outFloat == NULL.");
-        assert(m_node && "DataMapMutator::ReadFloatSafe() called, but m_node == NULL.");
+        assert(outFloat && "DataMapMutator::ReadFloatSafe() called, but outFloat == nullptr.");
+        assert(m_node && "DataMapMutator::ReadFloatSafe() called, but m_node == nullptr.");
     #endif
 
     return m_node->QueryFloat(outFloat);
@@ -661,8 +661,8 @@ bool DataMapMutator::ReadFloatSafe (float * outFloat) const {
 //=========================================================================
 bool DataMapMutator::ReadStringSafe (char * outString, int buffer_sizeInElements) const {
     #if DATAMAPMUTATOR_BASIC_SAFETY_CHECKS
-        assert(outString && "DataMapMutator::ReadStringSafe() called, but outString == NULL.");
-        assert(m_node && "DataMapMutator::ReadStringSafe() called, but m_node == NULL.");
+        assert(outString && "DataMapMutator::ReadStringSafe() called, but outString == nullptr.");
+        assert(m_node && "DataMapMutator::ReadStringSafe() called, but m_node == nullptr.");
     #endif
 
     return m_node->QueryString(outString, buffer_sizeInElements);

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Christopher Higgins Barrett
+Copyright (c) 2016 Christopher Higgins Barrett
 
 This software is provided 'as-is', without any express or implied
 warranty. In no event will the authors be held liable for any damages
@@ -18,7 +18,8 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include <assert.h>
+#include <cassert>
+#include <cstring>
 
 #include "../include/DataNode.hpp"
 
@@ -47,7 +48,7 @@ DataNode::DataNode (const DataNode & other) {
     SetName(other.m_name);
     SetType(other.m_type);
     // NOTE: This assumes that the m_stringm_data is the largest data member
-    memcpy(m_data.m_string, other.m_data.m_string, sizeof(m_data.m_string));
+	memcpy(m_data.m_string, other.m_data.m_string, sizeof(m_data.m_string));
     m_children = other.m_children;
 }
 
@@ -166,20 +167,20 @@ DataNode * DataNode::SetName (const char * new_name) {
 //=========================================================================
 DataNode * DataNode::SetNameSecure (const char * new_name, int size_in_elements) {
     int i = 0;
-    // write empty string first, in case NULL or empty string was given
+    // write empty string first, in case null or empty string was given
     m_name[0] = '\0';
 
-    if (new_name != NULL) {
+    if (new_name != nullptr) {
         while (i < size_in_elements  &&  i < s_nameSize) {
             m_name[i] = new_name[i];
             ++i;
         }
 
-        // write NULL terminating character
+        // write null-terminating character
         m_name[i] = '\0';
     }
 
-    // write NULL at last possible char, to protect against read-until-NULL-char
+    // write null at last possible char, to protect against read-until-null-char
     //   reading outside our buffer.
     //m_name[s_nameSize - 1] = '\0';
     return this;
@@ -220,16 +221,16 @@ DataNode * DataNode::SetString (const char * new_string) {
 DataNode * DataNode::SetStringSecure (const char * new_string,
 int size_in_elements) {
     int i = 0;
-    // write empty string first, in case a NULL or empty string was given
+    // write empty string first, in case a null or empty string was given
     m_data.m_string[0] = '\0';
 
-    if (new_string != NULL) {
+    if (new_string != nullptr) {
         while (i < size_in_elements  &&  i < s_stringDataSize) {
             m_data.m_string[i] = new_string[i];
             ++i;
         }
 
-        // NULL-terminate our string after copying
+        // null-terminate our string after copying
         m_data.m_string[i < s_stringDataSize ? i : s_stringDataSize - 1] = '\0';
     }
 
@@ -253,7 +254,7 @@ const DataNode * DataNode::GetChildByName (const char * name) const {
         if (!strcmp(m_children[i].GetName(), name))
             return &m_children[i];
     }
-    return NULL;
+    return nullptr;
 }
 
 //=========================================================================
@@ -264,7 +265,7 @@ DataNode * DataNode::GetChildByName (const char * name) {
         if (!strcmp(m_children[i].GetName(), name))
             return &m_children[i];
     }
-    return NULL;
+    return nullptr;
 }
 
 //=========================================================================
@@ -314,5 +315,5 @@ DataNode * DataNode::DeleteAllChildren (void) {
 } // namespace CSaruContainer
 
 #if _MSC_VER > 1000
-#pragma warning(pop)
+#	pragma warning(pop)
 #endif

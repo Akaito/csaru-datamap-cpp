@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Christopher Higgins Barrett
+Copyright (c) 2016 Christopher Higgins Barrett
 
 This software is provided 'as-is', without any express or implied
 warranty. In no event will the authors be held liable for any damages
@@ -175,17 +175,17 @@ public:
 
     inline DataNode * GetChildFast (int index) { return &m_children[index]; }
 
-    // returns a NULL pointer on invalid indices
+    // returns a null pointer on invalid indices
     inline const DataNode * GetChildSafe (int index) const {
         if (index < 0 || index >= GetChildCount())
-            return NULL;
+            return nullptr;
         return GetChildFast(index);
     }
 
-    // returns a NULL pointer on invalid indices
+    // returns a null pointer on invalid indices
     inline DataNode * GetChildSafe (int index) {
         if (index < 0 || index >= GetChildCount())
-            return NULL;
+            return nullptr;
         return GetChildFast(index);
     }
 

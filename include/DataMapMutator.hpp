@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Christopher Higgins Barrett
+Copyright (c) 2016 Christopher Higgins Barrett
 
 This software is provided 'as-is', without any express or implied
 warranty. In no event will the authors be held liable for any damages
@@ -42,9 +42,9 @@ public:
 
     // RETURNS: 0 if invalidated, 1 if at the root node, 2 if at one of the root
     //  node's children, and so on.
-    inline int GetCurrentDepth () const                { return int(m_nodeStack.size() + (m_node == NULL ? 0 : 1)); }
+    inline int GetCurrentDepth () const                { return int(m_nodeStack.size() + (m_node == nullptr ? 0 : 1)); }
 
-    inline bool IsValid () const                       { return m_node != NULL; }
+    inline bool IsValid () const                       { return m_node != nullptr; }
 
     //
     // Navigation methods
@@ -137,12 +137,12 @@ public:
     //   referring to any of this one's node's children!
     DataMapMutator & CreateChild (char const * name = nullptr);
 
-    DataMapMutator & CreateChildSafe (char const * name, size_t nameLen);
+    DataMapMutator & CreateChildSafe (char const * name, std::size_t nameLen);
 
     // name [in]: can be NULL.
     DataMapMutator & CreateAndGotoChild (char const * name = nullptr);
 
-    DataMapMutator & CreateAndGotoChildSafe (char const * name, size_t nameLen);
+    DataMapMutator & CreateAndGotoChildSafe (char const * name, std::size_t nameLen);
 
     void WriteName (char const * name);
 

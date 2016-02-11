@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Christopher Higgins Barrett
+Copyright (c) 2016 Christopher Higgins Barrett
 
 This software is provided 'as-is', without any express or implied
 warranty. In no event will the authors be held liable for any damages
@@ -20,6 +20,7 @@ freely, subject to the following restrictions:
 
 #pragma once
 
+#include <string>
 #include <vector>
 
 #include <csaru-core-cpp/csaru-core-cpp.h>
@@ -53,9 +54,9 @@ public:
 
     // RETURNS: -1 if invalidated, 0 if at the root node, 1 if at one of the root
     //  node's children, and so on.
-    inline int GetCurrentDepth (void) const            { return int(m_nodeStack.size() - 1 + (m_node == NULL ? 0 : 1)); }
+    inline int GetCurrentDepth (void) const            { return int(m_nodeStack.size() - 1 + (m_node == nullptr ? 0 : 1)); }
 
-    inline bool IsValid (void) const                   { return m_node != NULL; }
+    inline bool IsValid (void) const                   { return m_node != nullptr; }
 
     ///////
     // navigation (begin)
@@ -64,20 +65,20 @@ public:
     // NOTE: If this is used on the root node, the Reader becomes invalidated.
     DataMapReader & PopNode (void);
 
-    // if there are no children, the current node will become NULL.  You must
+    // if there are no children, the current node will become null.  You must
     //  PopNode to back out of this state.
     DataMapReader & ToFirstChild (void);
 
-    // if there are no children, the current node will become NULL.  You must
+    // if there are no children, the current node will become null.  You must
     //  PopNode to back out of this state.
     DataMapReader & ToLastChild (void);
 
     // if there is no child at the given index, the current node will become
-    //  NULL.  You must PopNode to back out of this state.
+    //  null.  You must PopNode to back out of this state.
     DataMapReader & ToChild (int index);
 
     // if no child with such a name exists, the current node will become
-    //  NULL.  You must PopNode to back out of this state.
+    //  null.  You must PopNode to back out of this state.
     DataMapReader & ToChild (const char * name);
 
     // theoretically slow.  Nodes have no knowledge of their siblings, so we
@@ -97,9 +98,9 @@ public:
     // reading (begin)
 
     const char * ReadName (void) const;
-    bool        ReadBool (void) const;
-    int         ReadInt (void) const;
-    float       ReadFloat (void) const;
+    bool         ReadBool (void) const;
+    int          ReadInt (void) const;
+    float        ReadFloat (void) const;
     const char * ReadString (void) const;
 
     // there's no ReadNameSafe ().  This would be to copy the name to a given
