@@ -16,5 +16,8 @@ CMakeCache.txt
 *.cmake
 install_manifest.txt
 
+# nix
+Makefile
+
 # Python
 __pycache__
