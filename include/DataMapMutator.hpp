@@ -30,7 +30,7 @@ class DataMapMutator {
 private:
     // Data
     DataNode *              m_node;
-    std::vector<DataNode *> m_nodeStack; // m_nodeStack does *not * contain m_node.
+    std::vector<DataNode *> m_nodeStack; // m_nodeStack does *not* contain m_node.
 
 public:
     explicit DataMapMutator (DataNode * dataNode);

@@ -31,7 +31,7 @@ public:
     // Type and Constants
     static const unsigned s_nameSize = 28;
     static const unsigned s_stringDataSize = 64;
-    static const unsigned s_maxDepth = 7;  // TODO: Error on passing MaxDepth
+    static const unsigned s_maxDepth = 15;  // TODO: Error on passing MaxDepth
 
     enum class Type {
         Unused = 0,
