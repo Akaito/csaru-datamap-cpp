@@ -27,7 +27,7 @@ freely, subject to the following restrictions:
 
 // TODO: Speed up Reader by maintaining the current child's index?
 
-namespace CSaruContainer {
+namespace CSaruDataMap {
 
 class DataNode;
 //class DataMapMutator;
@@ -176,5 +176,5 @@ public:
     DataMapReader () = delete;
 };
 
-} // namespace CSaruContainer
+} // namespace CSaruDataMap
 

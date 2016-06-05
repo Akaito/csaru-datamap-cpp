@@ -27,7 +27,7 @@ freely, subject to the following restrictions:
 #define DATAMAPREADER_BASIC_SAFETY_CHECKS 1
 #define DATAMAPREADER_EXTRA_SAFETY_CHECKS 1
 
-namespace CSaruContainer {
+namespace CSaruDataMap {
 
 //=========================================================================
 DataMapReader::DataMapReader (const DataNode * node)
@@ -288,7 +288,7 @@ void DataMapReader::PushNode (const DataNode * node) {
     m_node = node;
 }
 
-} // namespace CSaruContainer
+} // namespace CSaruDataMap
 
 #undef DATAMAPREADER_EXTRA_SAFETY_CHECKS
 #undef DATAMAPREADER_BASIC_SAFETY_CHECKS

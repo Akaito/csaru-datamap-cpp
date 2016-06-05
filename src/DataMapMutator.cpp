@@ -27,7 +27,7 @@ freely, subject to the following restrictions:
 #define DATAMAPMUTATOR_BASIC_SAFETY_CHECKS 1
 #define DATAMAPMUTATOR_EXTRA_SAFETY_CHECKS 1
 
-namespace CSaruContainer {
+namespace CSaruDataMap {
 
 //=========================================================================
 DataMapMutator::DataMapMutator (DataNode * dataNode)
@@ -668,7 +668,7 @@ bool DataMapMutator::ReadStringSafe (char * outString, int buffer_sizeInElements
     return m_node->QueryString(outString, buffer_sizeInElements);
 }
 
-} // namespace CSaruContainer
+} // namespace CSaruDataMap
 
 #undef DATAMAPMUTATOR_EXTRA_SAFETY_CHECKS
 #undef DATAMAPMUTATOR_BASIC_SAFETY_CHECKS

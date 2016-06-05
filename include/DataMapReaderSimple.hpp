@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Christopher Higgins Barrett
+Copyright (c) 2016 Christopher Higgins Barrett
 
 This software is provided 'as-is', without any express or implied
 warranty. In no event will the authors be held liable for any damages
@@ -22,7 +22,7 @@ freely, subject to the following restrictions:
 
 #include "DataMapReader.hpp"
 
-namespace CSaruContainer {
+namespace CSaruDataMap {
 
 class DataMapReaderSimple {
 
@@ -67,5 +67,5 @@ public: // Queries / Commands
 
 };
 
-} // namespace CSaruContainer
+} // namespace CSaruDataMap
 

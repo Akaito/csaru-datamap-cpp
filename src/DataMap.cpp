@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Christopher Higgins Barrett
+Copyright (c) 2016 Christopher Higgins Barrett
 
 This software is provided 'as-is', without any express or implied
 warranty. In no event will the authors be held liable for any damages
@@ -26,7 +26,7 @@ freely, subject to the following restrictions:
     #pragma warning(disable:4996)
 #endif
 
-namespace CSaruContainer {
+namespace CSaruDataMap {
 
 //=========================================================================
 DataMap::DataMap(void) {
@@ -92,7 +92,7 @@ bool DataMap::ReadFromFile(char const* filename, Formats format) {
 }
 //*/
 
-} // namespace CSaruContainer
+} // namespace CSaruDataMap
 
 #if _MSC_VER > 100
     #pragma warning(pop)

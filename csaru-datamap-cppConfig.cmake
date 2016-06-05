@@ -30,16 +30,19 @@
 #	the future when we *might* do something like that, instead of paying for
 #	it now.
 include_directories("${CMAKE_CURRENT_LIST_DIR}/../..")
+# TODO : Include a -targets CMake file to provide targets, to
+#        replace file globbing below?
+#include("${CMAKE_CURRENT_LIST_DIR}/../
 
 # This is similar to the include_directories above, except for linking
 #	to libraries.  This file provides a variable,
-#	csaru-container-cpp_LIBRARIES, to any other CMake project that finds this
+#	csaru-datamap-cpp_LIBRARIES, to any other CMake project that finds this
 #	one via find_package().  That project can then use
-#	target_link_libraries() with csaru-container-cpp_LIBRARIES to make its
+#	target_link_libraries() with csaru-datamap-cpp_LIBRARIES to make its
 #	linker aware of this project's compiled libraries.
 if (WIN32)
-    file(GLOB_RECURSE csaru-container-cpp_LIBRARIES "${CMAKE_CURRENT_LIST_DIR}/../static/*.lib")
+    file(GLOB_RECURSE csaru-datamap-cpp_LIBRARIES "${CMAKE_CURRENT_LIST_DIR}/../static/*.lib")
 else()
-    file(GLOB_RECURSE csaru-container-cpp_LIBRARIES "${CMAKE_CURRENT_LIST_DIR}/../static/*.a")
+    file(GLOB_RECURSE csaru-datamap-cpp_LIBRARIES "${CMAKE_CURRENT_LIST_DIR}/../static/*.a")
 endif()
 

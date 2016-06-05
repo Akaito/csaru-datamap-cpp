@@ -22,7 +22,7 @@ freely, subject to the following restrictions:
 
 #include <vector>
 
-namespace CSaruContainer {
+namespace CSaruDataMap {
 
 // ASSUMPTION: Does not contain a vtable. // TODO: Double-check this requirement.
 // ASSUMPTION: Uses 1-byte chars.
@@ -223,4 +223,4 @@ public:
     DataNode * DeleteAllChildren (void);
 };
 
-} // namespace CSaruContainer
+} // namespace CSaruDataMap

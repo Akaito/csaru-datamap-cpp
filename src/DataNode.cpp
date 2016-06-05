@@ -32,7 +32,7 @@ freely, subject to the following restrictions:
 #   pragma warning(disable:4996)
 #endif
 
-namespace CSaruContainer {
+namespace CSaruDataMap {
 
 //=========================================================================
 DataNode::DataNode (const DataNode & other) {
@@ -271,7 +271,7 @@ DataNode * DataNode::GetChildByName (const char * name) {
 //=========================================================================
 DataNode * DataNode::AppendNewChild (void) {
     //m_children.resize(m_children.size() + 1);
-    m_children.push_back(CSaruContainer::DataNode());
+    m_children.push_back(CSaruDataMap::DataNode());
     if (m_type != Type::Object && m_type != Type::Array)
         SetType(Type::Object);
     return &m_children.back();
@@ -312,7 +312,7 @@ DataNode * DataNode::DeleteAllChildren (void) {
     return this;
 }
 
-} // namespace CSaruContainer
+} // namespace CSaruDataMap
 
 #if _MSC_VER > 1000
 #	pragma warning(pop)

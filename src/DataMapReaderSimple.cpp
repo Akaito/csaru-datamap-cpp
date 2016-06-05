@@ -20,7 +20,7 @@ freely, subject to the following restrictions:
 
 #include "../include/DataMapReaderSimple.hpp"
 
-namespace CSaruContainer {
+namespace CSaruDataMap {
 
 //==============================================================================
 DataMapReaderSimple::DataMapReaderSimple (const DataMapReader & reader) :
@@ -329,4 +329,4 @@ std::wstring DataMapReaderSimple::WString (
 
 }
 
-} // namespace CSaruContainer
+} // namespace CSaruDataMap

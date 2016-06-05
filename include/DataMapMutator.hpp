@@ -22,7 +22,7 @@ freely, subject to the following restrictions:
 
 #include <vector>
 
-namespace CSaruContainer {
+namespace CSaruDataMap {
 
 class DataNode;
 
@@ -367,4 +367,4 @@ public:
     }
 };
 
-} // namespace CSaruContainer
+} // namespace CSaruDataMap
