@@ -20,8 +20,8 @@ freely, subject to the following restrictions:
 
 #include <cassert>
 
-#include "../include/DataMapMutator.hpp"
-#include "../include/DataNode.hpp"
+#include "exported/DataMapMutator.hpp"
+#include "exported/DataNode.hpp"
 
 #define DATAMAPMUTATOR_BREAK_ON_INVALIDATING_ACTIONS 1
 #define DATAMAPMUTATOR_BASIC_SAFETY_CHECKS 1

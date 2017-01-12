@@ -21,7 +21,7 @@ freely, subject to the following restrictions:
 #include <cassert>
 #include <cstring>
 
-#include "../include/DataNode.hpp"
+#include "exported/DataNode.hpp"
 
 #if _MSC_VER > 1000
 #   pragma warning(push)

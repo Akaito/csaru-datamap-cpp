@@ -20,8 +20,8 @@ freely, subject to the following restrictions:
 
 #include <assert.h>
 
-#include "../include/DataMapReader.hpp"
-#include "../include/DataNode.hpp"
+#include "exported/DataMapReader.hpp"
+#include "exported/DataNode.hpp"
 
 #define DATAMAPREADER_BREAK_ON_INVALIDATING_ACTIONS 0
 #define DATAMAPREADER_BASIC_SAFETY_CHECKS 1

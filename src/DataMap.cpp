@@ -18,7 +18,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "../include/DataMap.hpp"
+#include "exported/DataMap.hpp"
 
 #if _MSC_VER > 1000
     #pragma warning(push)

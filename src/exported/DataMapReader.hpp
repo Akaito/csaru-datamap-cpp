@@ -23,7 +23,7 @@ freely, subject to the following restrictions:
 #include <string>
 #include <vector>
 
-#include <csaru-core-cpp/csaru-core-cpp.h>
+#include <csaru-core-cpp/csaru-core-cpp.hpp>
 
 // TODO: Speed up Reader by maintaining the current child's index?
 
