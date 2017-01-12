@@ -139,7 +139,7 @@ const {
         return false;
     int copy_counter = 0;
 
-    while (copy_counter < s_stringDataSize &&
+    while (copy_counter < static_cast<int>(s_stringDataSize) &&
      m_data.m_string[copy_counter] &&
      copy_counter < out_m_stringsize_in_elements - 1) {
         outString[copy_counter] = m_data.m_string[copy_counter];
@@ -171,7 +171,7 @@ DataNode * DataNode::SetNameSecure (const char * new_name, int size_in_elements)
     m_name[0] = '\0';
 
     if (new_name != nullptr) {
-        while (i < size_in_elements  &&  i < s_nameSize) {
+        while (i < size_in_elements  &&  i < static_cast<int>(s_nameSize)) {
             m_name[i] = new_name[i];
             ++i;
         }
@@ -225,13 +225,13 @@ int size_in_elements) {
     m_data.m_string[0] = '\0';
 
     if (new_string != nullptr) {
-        while (i < size_in_elements  &&  i < s_stringDataSize) {
+        while (i < size_in_elements  &&  i < static_cast<int>(s_stringDataSize)) {
             m_data.m_string[i] = new_string[i];
             ++i;
         }
 
         // null-terminate our string after copying
-        m_data.m_string[i < s_stringDataSize ? i : s_stringDataSize - 1] = '\0';
+        m_data.m_string[i < static_cast<int>(s_stringDataSize) ? i : s_stringDataSize - 1] = '\0';
     }
 
     //m_data.m_string[s_stringDataSize - 1] = '\0';
